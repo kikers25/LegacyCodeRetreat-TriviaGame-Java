@@ -1,4 +1,4 @@
-package com.legacycoderetreat.trivia;
+package com.legacycoderetreat.trivia.game;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
