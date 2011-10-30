@@ -14,9 +14,9 @@ public class GenerateAcceptanceTests {
 		PrintStream realSystemOut = System.out;
 
 		try {
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 10000; i++) {
 				String acceptanceTestFileName = String.format(
-						"acceptance/data/%04d.txt", i);
+						"acceptance/masters/%04d.txt", i);
 				File acceptanceTestFile = new File(acceptanceTestFileName);
 				PrintStream printToFile = new PrintStream(acceptanceTestFile);
 				System.setOut(printToFile);
@@ -40,9 +40,9 @@ public class GenerateAcceptanceTests {
 
 				printToFile.close();
 			}
-		} catch (FileNotFoundException logged) {
+		} catch (FileNotFoundException wrapped) {
 			System.setOut(realSystemOut);
-			logged.printStackTrace();
+			throw new RuntimeException("Something went horribly wrong", wrapped);
 		} finally {
 			System.setOut(realSystemOut);
 		}
